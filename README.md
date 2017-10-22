@@ -1,2 +1,4 @@
 # Banking-System-Solutions
-Banking System based on VB
+Banking System App
+Front End: Visual Basic 6.0
+Back End: MS-Access
