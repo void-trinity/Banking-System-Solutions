@@ -18,7 +18,7 @@ Begin VB.Form Form1
    Begin VB.Data dataSBI 
       Caption         =   "Data1"
       Connect         =   "Access"
-      DatabaseName    =   "D:\EDUCATION\BE CSE AC09UCS099\Sem-5\SE\Output\batch 3\BaNkInG\project.mdb"
+      DatabaseName    =   "Z:\ThirdB VB projects\batch 3\BaNkInG\project.mdb"
       DefaultCursorType=   0  'DefaultCursor
       DefaultType     =   2  'UseODBC
       Exclusive       =   0   'False
@@ -727,7 +727,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub btnHome_Click()
-    Form1.Hide
+    Unload Me
     Form2.Show
 End Sub
 

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form Form5 
    BackColor       =   &H00FFFFFF&
-   Caption         =   "Form5"
+   Caption         =   "Account List (Admin View)"
    ClientHeight    =   8115
    ClientLeft      =   120
    ClientTop       =   465
@@ -192,7 +192,7 @@ Begin VB.Form Form5
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   315
-      Left            =   4680
+      Left            =   5040
       TabIndex        =   4
       Top             =   840
       Width           =   1095
@@ -573,16 +573,26 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
-
 Private Sub btnHome_Click()
     Unload Me
-    Form4.Show
+    Form2.Show
 End Sub
 Private Sub Form_Activate()
     lblAccountNoNotFound.Caption = ""
     txtListAccountNo.SetFocus
     dataSBI.Refresh
+    dataSBI.Recordset.MoveFirst
+    Do While Not dataSBI.Recordset.EOF
+        Form5.lstName.AddItem (dataSBI.Recordset.Fields(0))
+        Form5.lstAge.AddItem (dataSBI.Recordset.Fields(1))
+        Form5.lstAddress.AddItem (dataSBI.Recordset.Fields(2))
+        Form5.lstPhone.AddItem (dataSBI.Recordset.Fields(3))
+        Form5.lstGender.AddItem (dataSBI.Recordset.Fields(4))
+        Form5.lstAccNo.AddItem (dataSBI.Recordset.Fields(6))
+        Form5.lstBalance.AddItem (dataSBI.Recordset.Fields(7))
+        Form5.lstAccType.AddItem (dataSBI.Recordset.Fields(8))
+        dataSBI.Recordset.MoveNext
+    Loop
 End Sub
 
 Private Sub Form_Load()

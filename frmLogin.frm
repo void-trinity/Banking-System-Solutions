@@ -80,7 +80,9 @@ Begin VB.Form Form4
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
+         IMEMode         =   3  'DISABLE
          Left            =   720
+         PasswordChar    =   "*"
          TabIndex        =   3
          Top             =   3000
          Width           =   4500
@@ -107,7 +109,7 @@ Begin VB.Form Form4
          Caption         =   "Label3"
          ForeColor       =   &H000000FF&
          Height          =   255
-         Left            =   2160
+         Left            =   2520
          TabIndex        =   7
          Top             =   6600
          Width           =   3135
@@ -204,22 +206,7 @@ Private Sub Command1_Click()
     ElseIf txtAccNo.Text = "admin" And txtPassword.Text = "admin" And LoginCond = 1 Then
             Form5.Show
             Login_load
-            
-            dataSBI.Recordset.MoveFirst
-            
-            Do While Not dataSBI.Recordset.EOF
-                   
-            Form5.lstName.AddItem (dataSBI.Recordset.Fields(0))
-            Form5.lstAge.AddItem (dataSBI.Recordset.Fields(1))
-            Form5.lstAddress.AddItem (dataSBI.Recordset.Fields(2))
-            Form5.lstPhone.AddItem (dataSBI.Recordset.Fields(3))
-            Form5.lstGender.AddItem (dataSBI.Recordset.Fields(4))
-            Form5.lstAccNo.AddItem (dataSBI.Recordset.Fields(6))
-            Form5.lstBalance.AddItem (dataSBI.Recordset.Fields(7))
-            Form5.lstAccType.AddItem (dataSBI.Recordset.Fields(8))
-            
-            dataSBI.Recordset.MoveNext
-            Loop
+            Unload Me
     Else
 
         Dim X As Integer
@@ -237,6 +224,7 @@ Private Sub Command1_Click()
         
         If Login = dataSBI.Recordset.Fields(6) And Password = dataSBI.Recordset.Fields(5) Then
             X = 1
+            AcNo = Login
             If LoginCond = 0 Then
                 Form3.Show
                 Login_load
@@ -262,10 +250,13 @@ Private Sub Command1_Click()
         Loop
         
         If X <> 1 Then
-         lblLoginWarning.Caption = "Invalid Acc.No and Password,Try Again"
-         txtAccNo.Text = ""
-         txtPassword.Text = ""
-         txtAccNo.SetFocus
+            lblLoginWarning.Caption = "Invalid Acc.No and Password,Try Again"
+            txtAccNo.Text = ""
+            txtPassword.Text = ""
+            txtAccNo.SetFocus
+        Else
+            Unload Me
+            Login_load
         End If
     End If
 End Sub
